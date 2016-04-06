@@ -54,7 +54,7 @@ public class HongbaoService extends AccessibilityService implements SharedPrefer
     public void onAccessibilityEvent(AccessibilityEvent event) {
         if (sharedPreferences == null) return;
 
-        setCurrentActivityName(event);
+        currentActivityName = setCurrentActivityName(event);
 
         /* 检测通知消息 */
         if (!mMutex) {
@@ -103,9 +103,10 @@ public class HongbaoService extends AccessibilityService implements SharedPrefer
         }
     }
 
-    private void setCurrentActivityName(AccessibilityEvent event) {
+    private String setCurrentActivityName(AccessibilityEvent event) {
+        String activityName = null;
         if (event.getEventType() != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-            return;
+            return activityName;
         }
 
         try {
@@ -115,10 +116,11 @@ public class HongbaoService extends AccessibilityService implements SharedPrefer
             );
 
             getPackageManager().getActivityInfo(componentName, 0);
-            currentActivityName = componentName.flattenToShortString();
+            activityName = componentName.flattenToShortString();
         } catch (PackageManager.NameNotFoundException e) {
-            currentActivityName = WECHAT_LUCKMONEY_GENERAL_ACTIVITY;
+            activityName = WECHAT_LUCKMONEY_GENERAL_ACTIVITY;
         }
+        return activityName;
     }
 
     private boolean watchList(AccessibilityEvent event) {
