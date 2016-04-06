@@ -27,7 +27,7 @@ import xyz.monkeytong.hongbao.utils.UpdateTask;
 //import com.tencent.bugly.crashreport.CrashReport;
 
 
-public class MainActivity extends Activity implements AccessibilityManager.AccessibilityStateChangeListener {
+public class MainActivity extends BaseActivity implements AccessibilityManager.AccessibilityStateChangeListener {
 
     //开关切换按钮
     private Button switchPlugin;
@@ -41,8 +41,6 @@ public class MainActivity extends Activity implements AccessibilityManager.Acces
         setContentView(R.layout.activity_main);
         switchPlugin = (Button) findViewById(R.id.button_accessible);
 
-        handleMaterialStatusBar();
-
         explicitlyLoadPreferences();
 
         //监听AccessibilityService 变化
@@ -53,24 +51,6 @@ public class MainActivity extends Activity implements AccessibilityManager.Acces
 
     private void explicitlyLoadPreferences() {
         PreferenceManager.setDefaultValues(this, R.xml.general_preferences, false);
-    }
-
-    /**
-     * 适配MIUI沉浸状态栏
-     */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void handleMaterialStatusBar() {
-        // Not supported in APK level lower than 21
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return;
-
-        Window window = this.getWindow();
-
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-        window.setStatusBarColor(getResources().getColor(R.color.statusBarColor));
-
     }
 
     @Override
