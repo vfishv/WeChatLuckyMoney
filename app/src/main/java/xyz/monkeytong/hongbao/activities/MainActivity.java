@@ -69,7 +69,7 @@ public class MainActivity extends Activity implements AccessibilityManager.Acces
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-        window.setStatusBarColor(0xffd84e43);
+        window.setStatusBarColor(getResources().getColor(R.color.statusBarColor));
 
     }
 
