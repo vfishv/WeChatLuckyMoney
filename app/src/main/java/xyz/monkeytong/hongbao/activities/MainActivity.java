@@ -24,7 +24,7 @@ import xyz.monkeytong.hongbao.fragments.GeneralSettingsFragment;
 import xyz.monkeytong.hongbao.utils.ConnectivityUtil;
 import xyz.monkeytong.hongbao.utils.UpdateTask;
 
-import com.tencent.bugly.crashreport.CrashReport;
+//import com.tencent.bugly.crashreport.CrashReport;
 
 
 public class MainActivity extends Activity implements AccessibilityManager.AccessibilityStateChangeListener {
@@ -37,7 +37,7 @@ public class MainActivity extends Activity implements AccessibilityManager.Acces
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashReport.initCrashReport(getApplicationContext(), "900019352", false);
+//        CrashReport.initCrashReport(getApplicationContext(), "900019352", false);
         setContentView(R.layout.activity_main);
         switchPlugin = (Button) findViewById(R.id.button_accessible);
 

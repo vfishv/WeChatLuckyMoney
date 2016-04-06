@@ -6,11 +6,11 @@ import android.content.pm.PackageInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.widget.Toast;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+//import org.apache.http.HttpResponse;
+//import org.apache.http.StatusLine;
+//import org.apache.http.client.HttpClient;
+//import org.apache.http.client.methods.HttpGet;
+//import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 import xyz.monkeytong.hongbao.R;
 import xyz.monkeytong.hongbao.activities.SettingsActivity;
@@ -37,25 +37,25 @@ public class UpdateTask extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... uri) {
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpResponse response;
         String responseString = null;
-        try {
-            response = httpclient.execute(new HttpGet(uri[0]));
-            StatusLine statusLine = response.getStatusLine();
-            if (statusLine.getStatusCode() == 200) {
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                response.getEntity().writeTo(out);
-                responseString = out.toString();
-                out.close();
-            } else {
-                // Close the connection.
-                response.getEntity().getContent().close();
-                throw new IOException(statusLine.getReasonPhrase());
-            }
-        } catch (Exception e) {
-            return null;
-        }
+//        HttpClient httpclient = new DefaultHttpClient();
+//        HttpResponse response;
+//        try {
+//            response = httpclient.execute(new HttpGet(uri[0]));
+//            StatusLine statusLine = response.getStatusLine();
+//            if (statusLine.getStatusCode() == 200) {
+//                ByteArrayOutputStream out = new ByteArrayOutputStream();
+//                response.getEntity().writeTo(out);
+//                responseString = out.toString();
+//                out.close();
+//            } else {
+//                // Close the connection.
+//                response.getEntity().getContent().close();
+//                throw new IOException(statusLine.getReasonPhrase());
+//            }
+//        } catch (Exception e) {
+//            return null;
+//        }
         return responseString;
     }
 
